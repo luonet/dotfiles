@@ -6,7 +6,13 @@
 Vim安装流程
 -----------
 
-1. 首先安装[vundle](https://github.com/gmarik/Vundle.vim):
+0. 安装[Macvim](https://github.com/b4winckler/macvim/wiki/FAQ):
+
+```
+brew install macvim --custom-icons --override-system-vim --with-lua --with-luajit --HEAD
+```
+
+1. 安装[vundle](https://github.com/gmarik/Vundle.vim):
 
 ```
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim

@@ -21,7 +21,7 @@ Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-vividchalk'
+" Plugin 'tpope/vim-vividchalk'
 
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/matchit.zip'
@@ -39,7 +39,6 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mbbill/undotree'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'gregsexton/gitv'
-" Plugin 'skalnik/vim-vroom'
 call vundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
