@@ -115,7 +115,7 @@ nnoremap <silent> <leader>c :VimShell<CR>
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 
 function! MyToggleNERDTreeFind()
-  if nerdtree#isTreeOpen()
+  if g:NERDTree.IsOpen()
     NERDTreeClose
   else
     NERDTreeFind
@@ -206,6 +206,8 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neosnippet
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Disable the default snippets: https://github.com/spf13/spf13-vim/issues/539
+let g:neosnippet#disable_runtime_snippets = { "_": 1, }
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
