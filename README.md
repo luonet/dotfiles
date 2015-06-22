@@ -6,24 +6,32 @@
 Vim安装流程
 -----------
 
-0. 安装[Macvim](https://github.com/b4winckler/macvim/wiki/FAQ):
+* 安装vim, 需要支持lua, [neocomplete](https://github.com/Shougo/neocomplete.vim)要用到:
 
-```
-brew install macvim --custom-icons --override-system-vim --with-lua --with-luajit --HEAD
-```
+  Mac:
 
-1. 安装[vundle](https://github.com/gmarik/Vundle.vim):
+  ```
+  brew install macvim --custom-icons --override-system-vim --with-lua --with-luajit --HEAD
+  ```
 
-```
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-```
+  Ubuntu:
 
-2. 建立软连接:
+  ```
+  sudo apt-get install vim-nox
+  ```
 
-```
-cd ~ && ln -s ~/.dotfiles/vimrc .vimrc && ln -s ~/.dotfiles/gvimrc .gvimrc
-```
+* 安装[vundle](https://github.com/gmarik/Vundle.vim):
 
-3. 安装插件, 打开vim执行`:PluginInstall`
+  ```
+  git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  ```
 
-4. 需要进入插件vimproc的目录运行`make`
+* 建立软连接:
+
+  ```
+  cd ~ && ln -s ~/.dotfiles/vimrc .vimrc && ln -s ~/.dotfiles/gvimrc .gvimrc
+  ```
+
+* 安装插件, 打开vim执行`:PluginInstall`
+
+* 需要进入插件vimproc的目录运行`make`
