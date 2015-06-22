@@ -47,6 +47,7 @@ call vundle#end()
 syntax on
 filetype plugin indent on
 compiler ruby
+scriptencoding utf-8
 
 set autoindent
 set hlsearch
