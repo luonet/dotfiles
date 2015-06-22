@@ -3,6 +3,13 @@
 
 常用配置文件，部分参考了[YARD](https://github.com/skwp/dotfiles)
 
+安装配置
+--------
+
+```
+git clone [REMOTE_URL] ~/.dotfiles && cd ~/.dotfiles && rake
+```
+
 Vim安装流程
 -----------
 
@@ -26,12 +33,16 @@ Vim安装流程
   git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   ```
 
-* 建立软连接:
-
-  ```
-  cd ~ && ln -s ~/.dotfiles/vimrc .vimrc && ln -s ~/.dotfiles/gvimrc .gvimrc
-  ```
-
 * 安装插件, 打开vim执行`:PluginInstall`
 
-* 需要进入插件vimproc的目录运行`make`
+* 编译vimproc
+
+  ```
+  cd ~/.vim/bundle/vimproc.vim && make
+  ```
+
+* 安装ag, ctags:
+
+  ```
+  brew install ag ctags
+  ```

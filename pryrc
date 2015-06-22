@@ -1,3 +1,4 @@
+# Pry.config.editor = proc { |file, line| "vim +#{line} #{file}" }
 Pry.editor = 'vim'
 
 begin
