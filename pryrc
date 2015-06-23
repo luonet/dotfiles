@@ -9,5 +9,5 @@ begin
     pry_object.pager.page("=> #{pretty}")
   end
 rescue LoadError
-  puts '请先安装或在Gemfile中添加awesome_print'
+  puts 'Please run `gem install awesome_print` or add it to Gemfile.'
 end
