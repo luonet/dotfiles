@@ -50,6 +50,11 @@ DOTFILES.each do |file|
   end
 end
 
+desc 'Create a temporary vimrc file to install plugins'
+task :write_temp_vimrc do
+  write_temp_vimrc
+end
+
 CURRENT_DIR = ENV['PWD']
 BACKUP_DIR  = "#{CURRENT_DIR}/backup"
 
@@ -117,28 +122,28 @@ def uninstall_vim_configurations
   uninstall_file 'gvimrc'
 end
 
+# Extract only the vundle section from vimrc to a temporary file, which will
+# soon be used to install plugins, for directly loading the full vimrc before
+# installing plugins will cause dependent errors.
+TEMP_VIMRC = 'temp.vimrc'
+
 def install_vundle_and_plugins
   p2('Installing', 'Vundle') { run 'git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim' }
 
   p2('Installing', 'vim plugins') do
-    # Extract only the vundle section from vimrc to a temporary vimrc.vundle,
-    # which will soon be used to install plugins, for directly loading vimrc
-    # before installing plugins will cause dependent errors.
-    temp_vimrc = 'vimrc.vundle'
-
-    if debug?
-      p2 'Creating', "a temporary #{temp_vimrc} file"
-    else
-      File.open(temp_vimrc, 'w') do |f|
-        File.read('vimrc') =~ /(.*call vundle#end\(\))/m
-        f.puts($1)
-      end
-    end
-
+    # Output the command to console in debug mode so user can manually run it.
+    debug? ? run('rake write_temp_vimrc') : write_temp_vimrc
     # Must use system('vim ...') to force vim to start automatically
-    run "vim --noplugin -u #{temp_vimrc} +PluginInstall +qall", :system
-    run "rm #{temp_vimrc}"
-    run 'cd ~/.vim/bundle/vimproc.vim && make'
+    run "vim --noplugin -u #{TEMP_VIMRC} +PluginInstall +qall", :system
+    run "rm #{TEMP_VIMRC}"
+    run 'cd ~/.vim/bundle/vimproc.vim && make && cd -'
+  end
+end
+
+def write_temp_vimrc
+  File.open(TEMP_VIMRC, 'w') do |f|
+    File.read('vimrc') =~ /(.*call vundle#end\(\))/m
+    f.puts($1)
   end
 end
 
