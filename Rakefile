@@ -25,6 +25,7 @@ DOTFILES = %w(
   gvimrc
   pentadactylrc
   pryrc
+  tmux.conf
   vimrc
 ).freeze
 
