@@ -96,16 +96,23 @@ def update_package_manager_and_install_vim
       p2('Installing', 'Homebrew') { run %{ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"} }
     end
 
-    p2('Updating', 'Homebrew')       { run 'brew update' }
+    p2('Updating',   'Homebrew')     { run 'brew update' }
     p2('Installing', 'ag and ctags') { run 'brew install ag ctags' }
     p2('Installing', 'vim')          { run 'brew install macvim --custom-icons --override-system-vim --with-lua --with-luajit --HEAD' }
   else
     `which apt-get`
 
     if $?.success?
-      p2('Updating', 'apt-get')        { run 'sudo apt-get update' }
+      p2('Updating',   'apt-get')      { run 'sudo apt-get update' }
       p2('Installing', 'ag and ctags') { run 'sudo apt-get install silversearcher-ag exuberant-ctags' }
-      p2('Installing', 'vim')          { run 'sudo apt-get install vim vim-nox vim-gtk' }
+      p2('Installing', 'vim')          { run 'sudo apt-get install vim vim-nox' }
+
+      # Only install gvim in Ubuntu desktop environment:
+      # http://askubuntu.com/questions/12562/how-to-check-if-ubuntu-desktop-or-server-is-installed
+      `dpkg -l ubuntu-desktop`
+      if $?.success?
+        p2('Installing', 'gvim') { run 'sudo apt-get install vim-gtk' }
+      end
     else
       p2('Warning', 'Can not find supporting package manager(brew/apt-get) to install vim')
       puts
