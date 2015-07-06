@@ -103,15 +103,15 @@ def update_package_manager_and_install_vim
     `which apt-get`
 
     if $?.success?
-      p2('Updating',   'apt-get')      { run 'sudo apt-get update' }
-      p2('Installing', 'ag and ctags') { run 'sudo apt-get install silversearcher-ag exuberant-ctags' }
-      p2('Installing', 'vim')          { run 'sudo apt-get install vim vim-nox' }
+      p2('Updating',   'apt-get')      { run 'sudo apt-get -y update' }
+      p2('Installing', 'ag and ctags') { run 'sudo apt-get -y install silversearcher-ag exuberant-ctags' }
+      p2('Installing', 'vim')          { run 'sudo apt-get -y install vim vim-nox' }
 
       # Only install gvim in Ubuntu desktop environment:
       # http://askubuntu.com/questions/12562/how-to-check-if-ubuntu-desktop-or-server-is-installed
       `dpkg -l ubuntu-desktop`
       if $?.success?
-        p2('Installing', 'gvim') { run 'sudo apt-get install vim-gtk' }
+        p2('Installing', 'gvim') { run 'sudo apt-get -y install vim-gtk' }
       end
     else
       p2('Warning', 'Can not find supporting package manager(brew/apt-get) to install vim')
