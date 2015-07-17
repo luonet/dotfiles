@@ -1,9 +1,4 @@
-# [user]
-# 	name = Luo Xin
-# 	email = luoxin.net@gmail.com
-# 	email = xluo@freewheel.tv
 [core]
-# 	editor = /usr/local/bin/vim
 	editor = vim
 	excludesfile = ~/.gitignore
 [alias]
@@ -18,3 +13,5 @@
 	lg = !"git lg1"
 [push]
 	default = simple
+[include]
+  path = ~/.gitconfig.user
