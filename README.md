@@ -70,17 +70,16 @@ Note: Uninstallation will keep vim and plugins, but plugins won't be loaded beca
 
 ### Movement Key Bindings
 
-- [normal mode] ```f then id``` quick jump to any words in screen, the id for each word will be shown once you pressed ```f```
-- [normal mode] ```ctrl and ]```  jump to definition (ctags), need to rebuild ctags first with ```ctags -R —exclude=node_modules```
+- [normal mode] ```f then id``` quick jump to any words in the screen, the id for each word will be shown once you pressed ```f```
+- [normal mode] ```ctrl and ]```  jump to definition, need to rebuild ctags first with ```ctags -R --exclude=node_modules```
 - [normal mode] ```ctrl and o``` jump back to last cursor position
 - [normal mode] ```ctrl and i``` jump back to next cursor position
-- [normal mode] ```space then space``` jump to and jump back between current editing file and last edited file
-- [normal mode] ```\` then \```` jump to and jump back between current editing line and last edited line
+- [normal mode] ```space then space``` jump to and jump back between the current editing file and the last edited file
+- [normal mode] ``` ` then ` ``` jump to and jump back between the current editing line and the last edited line
 
 ### Selection Key Bindings
 
-- [normal mode] ```b then v then i then w``` select current word
-- [normal mode] ```ctrl and n``` select multiple current word and edit them at the same time
+- [normal mode] ```ctrl and n``` press multiple times to select multiple current word and edit all of them at the same time
 
 ### Comment Key Bindings
 
@@ -88,8 +87,8 @@ Note: Uninstallation will keep vim and plugins, but plugins won't be loaded beca
 
 ### Alignment Key Bindings
 
-- [visual mode] ```enter then =``` align by =
-- [visual mode] ```enter then =``` align by :
+- [visual mode] ```enter then =``` align selected lines by =
+- [visual mode] ```enter then =``` align selected lines by :
 
 ### Buffers (Windows) Key Bindings
 
