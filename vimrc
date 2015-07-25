@@ -71,7 +71,6 @@ set termencoding=utf-8
 set tags=./tags;$HOME
 set nobackup
 set noswapfile
-set exrc
 
 if exists('+colorcolumn')
   set colorcolumn=80
@@ -149,10 +148,7 @@ let g:vimshell_editor_command='/usr/local/bin/vim'
 " unite
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:unite_source_history_yank_enable = 1
-let g:unite_matcher_fuzzy_max_input_length = 30
-let g:unite_source_rec_max_cache_files = 30000
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_selecta'])
 nnoremap <C-p>     :<C-u>Unite -start-insert file_rec/async:!<CR>
 nnoremap <leader>f :<C-u>Unite -start-insert file_rec/async:!<CR>
 nnoremap <Leader>s :<C-u>Unite -auto-preview grep:.<CR>
@@ -168,13 +164,11 @@ endfunction
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts =
-        \ '-i --line-numbers --nocolor --nogroup --hidden ' .
-        \ '--ignore ''.hg'' --ignore ''.svn'' ' .
-        \ '--ignore ''.git'' --ignore ''.bzr'''
+        \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
+        \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
   let g:unite_source_grep_recursive_opt = ''
   let g:unite_source_rec_async_command =
-        \ 'ag --follow --nocolor --nogroup ' .
-        \ '-g ""'
+        \ 'ag --follow --nocolor --nogroup --hidden -g ""'
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
