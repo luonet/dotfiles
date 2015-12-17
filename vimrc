@@ -41,6 +41,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'gregsexton/gitv'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'fatih/vim-go'
 call vundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
