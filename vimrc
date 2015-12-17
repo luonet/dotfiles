@@ -61,7 +61,9 @@ set expandtab
 set splitright
 set diffopt+=vertical
 set tabstop=2 shiftwidth=2 softtabstop=2
-set list listchars=tab:»▸,trail:·,nbsp:·
+set list listchars=tab:»·,trail:·,nbsp:·
+match Error /\t/
+2match Error / /
 set laststatus=2
 set wildmenu
 set wildmode=list:longest,list:full
@@ -79,6 +81,9 @@ else
 endif
 
 autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
+
+au FileType go setl noexpandtab
+au FileType go setl tabstop=4 shiftwidth=4 softtabstop=4
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " basic key mappings
