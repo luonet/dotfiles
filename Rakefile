@@ -23,9 +23,11 @@ DOTFILES = %w(
   gitconfig
   gitignore
   gvimrc
+  inputrc
   pentadactylrc
   pryrc
   tmux.conf
+  vimperatorrc
   vimrc
 ).freeze
 

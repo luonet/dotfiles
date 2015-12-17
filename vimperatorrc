@@ -1,0 +1,6 @@
+group user
+
+map J <C-p>
+map K <C-n>
+
+set gui=nonavigation,nobookmarks
