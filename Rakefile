@@ -58,11 +58,13 @@ GIT_USER_FILE = 'gitconfig.user'
 
 desc 'Install gitconfig'
 task :install_gitconfig do
-  File.write GIT_USER_FILE, <<-GIT_USER_FILE
+  unless File.file?(GIT_USER_FILE)
+    File.write GIT_USER_FILE, <<-GIT_USER_FILE
 [user]
 	email = luoxin.net@gmail.com
 	name = Luo Xin
-  GIT_USER_FILE
+    GIT_USER_FILE
+  end
 
   install_file('gitconfig')
   install_file(GIT_USER_FILE)
