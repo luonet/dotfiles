@@ -14,4 +14,4 @@
 [push]
 	default = simple
 [include]
-  path = ~/.gitconfig.user
+	path = ~/.gitconfig.user

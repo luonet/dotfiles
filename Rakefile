@@ -20,7 +20,6 @@ end
 
 DOTFILES = %w(
   gemrc
-  gitconfig
   gitignore
   gvimrc
   inputrc
@@ -51,6 +50,28 @@ DOTFILES.each do |file|
   task "uninstall_#{file}" do
     uninstall_file(file)
   end
+end
+
+# The user specific git configurations such as name and email should be stored
+# in a separate file to avoid conflicts.
+GIT_USER_FILE = 'gitconfig.user'
+
+desc 'Install gitconfig'
+task :install_gitconfig do
+  File.write GIT_USER_FILE, <<-GIT_USER_FILE
+[user]
+	email = luoxin.net@gmail.com
+	name = Luo Xin
+  GIT_USER_FILE
+
+  install_file('gitconfig')
+  install_file(GIT_USER_FILE)
+end
+
+desc 'Uninstall gitconfig'
+task :uninstall_gitconfig do
+  uninstall_file('gitconfig')
+  uninstall_file(GIT_USER_FILE)
 end
 
 desc 'Create a temporary vimrc file to install plugins'
