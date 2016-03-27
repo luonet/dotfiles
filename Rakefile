@@ -20,6 +20,7 @@ end
 
 DOTFILES = %w(
   gemrc
+  gitconfig
   gitignore
   gvimrc
   inputrc
@@ -52,30 +53,6 @@ DOTFILES.each do |file|
   end
 end
 
-# The user specific git configurations such as name and email should be stored
-# in a separate file to avoid conflicts.
-GIT_USER_FILE = 'gitconfig.user'
-
-desc 'Install gitconfig'
-task :install_gitconfig do
-  unless File.file?(GIT_USER_FILE)
-    File.write GIT_USER_FILE, <<-GIT_USER_FILE
-[user]
-	email = luoxin.net@gmail.com
-	name = Luo Xin
-    GIT_USER_FILE
-  end
-
-  install_file('gitconfig')
-  install_file(GIT_USER_FILE)
-end
-
-desc 'Uninstall gitconfig'
-task :uninstall_gitconfig do
-  uninstall_file('gitconfig')
-  uninstall_file(GIT_USER_FILE)
-end
-
 desc 'Create a temporary vimrc file to install plugins'
 task :write_temp_vimrc do
   write_temp_vimrc
@@ -98,6 +75,24 @@ def install_file(file)
 
     run %(ln -nfs "#{source}" "#{target}")
   end
+
+  install_git_user_file if file == 'gitconfig'
+end
+
+# The user specific git configurations such as name and email should be stored
+# in a separate file to avoid conflicts.
+GIT_USER_FILE = 'gitconfig.user'
+
+def install_git_user_file
+  unless File.file?(GIT_USER_FILE)
+    File.write GIT_USER_FILE, <<-GIT_USER_FILE
+[user]
+	email = luoxin.net@gmail.com
+	name = Luo Xin
+    GIT_USER_FILE
+  end
+
+  install_file(GIT_USER_FILE)
 end
 
 def uninstall_file(file)
@@ -112,6 +107,8 @@ def uninstall_file(file)
       run %(rm "#{target}")
     end
   end
+
+  uninstall_file(GIT_USER_FILE) if file == 'gitconfig'
 end
 
 def update_package_manager_and_install_vim
