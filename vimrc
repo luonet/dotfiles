@@ -10,7 +10,7 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/vimshell.vim'
+" Plugin 'Shougo/vimshell.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet'
 
@@ -83,7 +83,8 @@ endif
 
 autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 
-au FileType go setl noexpandtab
+" gofmt formats everything for you
+au FileType go setl noexpandtab nolist
 au FileType go setl tabstop=4 shiftwidth=4 softtabstop=4
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
