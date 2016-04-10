@@ -120,7 +120,7 @@ def update_package_manager_and_install_vim
 
     p2('Updating',   'Homebrew')     { run 'brew update' }
     p2('Installing', 'ag and ctags') { run 'brew install ag ctags' }
-    p2('Installing', 'vim')          { run 'brew install macvim --custom-icons --override-system-vim --with-lua --with-luajit --HEAD' }
+    p2('Installing', 'vim')          { run 'brew install macvim --with-override-system-vim --with-luajit' }
   else
     `which apt-get`
 
