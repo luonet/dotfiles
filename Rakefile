@@ -19,6 +19,7 @@ task :update do
 end
 
 DOTFILES = %w(
+  ctags
   gemrc
   gitconfig
   gitignore
