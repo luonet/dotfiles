@@ -84,8 +84,7 @@ endif
 autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 
 " gofmt formats everything for you
-au FileType go setl noexpandtab nolist
-au FileType go setl tabstop=4 shiftwidth=4 softtabstop=4
+au FileType c,cpp,go setl noexpandtab nolist ts=4 sw=4 sts=4
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " basic key mappings
