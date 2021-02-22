@@ -1,0 +1,176 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-plug
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
+
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'altercation/vim-colors-solarized'
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/gv.vim'
+
+" Requirements:
+" 1. node: brew install node
+" 2. :CocInstall coc-lists coc-json
+" 3. :CocInstall coc-go
+" 4. gem install solargraph, :CocInstall coc-solargraph
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'fatih/vim-go'
+
+Plug 'preservim/nerdtree'
+Plug 'preservim/tagbar'
+Plug 'liuchengxu/vista.vim'
+Plug 'hecal3/vim-leader-guide'
+Plug 'vim-scripts/tComment'
+Plug 'mhinz/vim-signify'
+
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-rails'
+" Plug 'tpope/vim-bundler'
+" Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-repeat'
+" Plug 'tpope/vim-vividchalk'
+
+" Initialize plugin system
+call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible
+filetype plugin indent on      " Load plugins according to detected filetype.
+syntax on                      " Enable syntax highlighting.
+set autoindent                 " Indent according to previous line.
+
+scriptencoding utf-8
+set encoding=utf-8             " Set default encoding
+set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+
+set mouse=a                    " Automatically enable mouse usage
+set mousehide                  " Hide the mouse cursor while typing
+set ttyfast                    " Faster redrawing
+set belloff=all
+set novisualbell
+set noerrorbells
+
+set hidden                     " Allow buffer switching without saving
+set autoread                   " Automatically read a file changed outside of vim
+" set autowrite                  " Automatically write a file when leaving a modified buffer
+set nobackup
+set noswapfile
+set nowritebackup
+
+set smarttab
+set expandtab                  " Use spaces instead of tabs.
+set tabstop=2                  " Tab key indents by 2 spaces.
+set softtabstop=2              " Let backspace delete indent.
+set shiftwidth=2               " >> indents by 2 spaces.
+
+set backspace=indent,eol,start " Make backspace work as you would expect.
+set laststatus=2               " Always show statusline.
+set display+=lastline          " Show as much as possible of the last line.
+
+set number
+set ruler
+set colorcolumn=80
+
+set showmode                   " Show current mode in command-line.
+set showcmd                    " Show already typed keys when more are expected.
+set showmatch                  " Show matching brackets/parentthesis
+set matchtime=5                " Show matching time
+
+set incsearch                  " Highlight while searching with / or ?.
+set hlsearch                   " Keep matches highlighted.
+set ignorecase                 " Case insensitive search
+set smartcase                  " ... but case sensitive when uc present
+
+set splitbelow                 " Open new windows below the current window.
+set splitright                 " Open new windows right of the current window.
+
+set wildmenu                   " Show list instead of just completing
+set wildignorecase
+set wildmode=list:longest,full
+match Error /\t/               " TAB和结尾的空白字符显示为红色
+2match Error / /
+
+set list                       " Show non-printable characters.
+set listchars=tab:»·,trail:·,nbsp:·,extends:↷,precedes:↶
+
+" From https://github.com/neoclide/coc.nvim#example-vim-configuration
+set updatetime=300             " Default is 4000 ms = 4 s
+set shortmess+=c               " Don't pass messages to |ins-completion-menu|.
+
+set timeoutlen=500             " By default timeoutlen is 1000 ms
+if !has('nvim') && &ttimeoutlen == -1
+  set ttimeout                 " time out for key codes
+  set ttimeoutlen=100          " wait up to 100ms after Esc for special key
+endif
+
+runtime! macros/matchit.vim
+au FileType c,cpp,go setl noexpandtab nolist ts=4 sw=4 sts=4
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" map
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap j gj
+nnoremap k gk
+
+let mapleader = " "
+
+nnoremap <leader><leader>   <c-^>
+nnoremap <silent> <leader>w <C-w>v<C-w>l
+nnoremap <silent> <leader>d :noh<CR>
+nnoremap <silent> <leader>q :q<CR>
+nnoremap <silent> <leader>b :Tagbar<CR>
+
+function! MyToggleNERDTreeFind()
+  if g:NERDTree.IsOpen()
+    NERDTreeClose
+  else
+    NERDTreeFind
+  endif
+endfunction
+noremap <silent> <leader>t :call MyToggleNERDTreeFind()<CR>
+
+" Define prefix dictionary
+let g:lmap =  {}
+
+call leaderGuide#register_prefix_descriptions("<Space>", "g:lmap")
+nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
+vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" gui
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has('gui_running')
+  " disable blinking for all modes (the "a" specifies all modes, and
+  " the 0 value for blinkon disables blinking):
+  set guicursor+=a:blinkon0
+  set guifont=Monaco:h14
+
+  set guioptions-=r            " Hide the right scrollbar
+  set guioptions-=L            " Hide the left scrollbar
+  set guioptions-=T
+  set guioptions-=e
+
+  " If you want the window as big as possible, you can set these options to
+  " very large values: https://github.com/b4winckler/macvim/wiki/FAQ
+  set columns=1024
+  set lines=1024
+
+  set background=light
+  colorscheme solarized
+else
+  set background=dark
+  colorscheme solarized
+  highlight SignifySignAdd    cterm=bold ctermbg=NONE ctermfg=119
+  highlight SignifySignDelete cterm=bold ctermbg=NONE ctermfg=167
+  highlight SignifySignChange cterm=bold ctermbg=NONE ctermfg=227
+endif
+highlight clear SignColumn     " SignColumn should match background
