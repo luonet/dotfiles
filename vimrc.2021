@@ -184,13 +184,13 @@ map  <leader>s <Plug>(easymotion-sn)
 
 " Need to install powerline fonts to beautify tmuxline
 " brew search powerline; brew install --cask font-noto-mono-for-powerline
-let g:tmuxline_powerline_separators = 0
-let g:tmuxline_separators = {
-    \ 'left' : '',
-    \ 'left_alt': '>',
-    \ 'right' : '',
-    \ 'right_alt' : '<',
-    \ 'space' : ' '}
+" let g:tmuxline_powerline_separators = 0
+" let g:tmuxline_separators = {
+"     \ 'left' : '',
+"     \ 'left_alt': '>',
+"     \ 'right' : '',
+"     \ 'right_alt' : '<',
+"     \ 'space' : ' '}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc
