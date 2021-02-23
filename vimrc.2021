@@ -3,32 +3,36 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'altercation/vim-colors-solarized'
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/gv.vim'
 
-" Requirements:
+" Coc Requirements:
 " 1. node: brew install node
 " 2. :CocInstall coc-lists coc-json
 " 3. :CocInstall coc-go
 " 4. gem install solargraph, :CocInstall coc-solargraph
+" 5. :CocInstall coc-snippets
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
 Plug 'fatih/vim-go'
 
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'altercation/vim-colors-solarized'
 Plug 'preservim/nerdtree'
 Plug 'preservim/tagbar'
-Plug 'liuchengxu/vista.vim'
-Plug 'hecal3/vim-leader-guide'
 Plug 'vim-scripts/tComment'
+Plug 'easymotion/vim-easymotion'
 Plug 'mhinz/vim-signify'
+Plug 'andymass/vim-matchup'
+Plug 'hecal3/vim-leader-guide'
+Plug 'liuchengxu/vista.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mg979/vim-visual-multi'
-Plug 'easymotion/vim-easymotion'
-Plug 'andymass/vim-matchup'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
 
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -39,7 +43,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-vividchalk'
 
-" Initialize plugin system
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -179,6 +182,16 @@ map  t <Plug>(easymotion-t)
 map  T <Plug>(easymotion-T)
 map  <leader>s <Plug>(easymotion-sn)
 
+" Need to install powerline fonts to beautify tmuxline
+" brew search powerline; brew install --cask font-noto-mono-for-powerline
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_separators = {
+    \ 'left' : '',
+    \ 'left_alt': '>',
+    \ 'right' : '',
+    \ 'right_alt' : '<',
+    \ 'space' : ' '}
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -195,6 +208,11 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" imap <C-l> <Plug>(coc-snippets-expand)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_prev = '<c-k>'
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -230,6 +248,7 @@ nnoremap <silent> <leader>cb :CocList buffers<CR>
 nnoremap <silent> <leader>cd :CocList diagnostics<CR>
 nnoremap <silent> <leader>ce :CocCommand explorer<CR>
 nnoremap <silent> <leader>cf :CocList files<CR>
+nnoremap <silent> <leader>cs :CocList snippets<CR>
 nnoremap <leader>cg :CocList grep<Space>
 nnoremap <silent> <leader>cr <Plug>(coc-rename)
 
