@@ -1,6 +1,8 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
+	pager = delta
+
 [alias]
 	s = status
 	st = status
@@ -15,3 +17,12 @@
 	default = simple
 [include]
 	path = ~/.gitconfig.user
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	features = line-numbers decorations
+	whitespace-error-style = 22 reverse
+[delta "decorations"]
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none

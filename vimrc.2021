@@ -34,6 +34,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 Plug 'voldikss/vim-floaterm'
+" Plug 'plasticboy/vim-markdown'
 
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -67,6 +68,7 @@ set belloff=all
 set novisualbell
 set noerrorbells
 
+" set paste                      " Do not format when pasting from clipboard
 set hidden                     " Allow buffer switching without saving
 set autoread                   " Automatically read a file changed outside of vim
 " set autowrite                  " Automatically write a file when leaving a modified buffer
@@ -105,7 +107,7 @@ set diffopt+=vertical          " Show diff in vertical windows
 set wildmenu                   " Show list instead of just completing
 set wildignorecase
 set wildmode=list:longest,full
-match Error /\t/               " TAB和结尾的空白字符显示为红色
+match Error /\t/               " Show TAB and trailing space in red
 2match Error / /
 
 set list                       " Show non-printable characters.
@@ -190,16 +192,6 @@ map  F <Plug>(easymotion-F)
 map  t <Plug>(easymotion-t)
 map  T <Plug>(easymotion-T)
 map  <leader>s <Plug>(easymotion-sn)
-
-" Need to install powerline fonts to beautify tmuxline
-" brew search powerline; brew install --cask font-noto-mono-for-powerline
-" let g:tmuxline_powerline_separators = 0
-" let g:tmuxline_separators = {
-"     \ 'left' : '',
-"     \ 'left_alt': '>',
-"     \ 'right' : '',
-"     \ 'right_alt' : '<',
-"     \ 'space' : ' '}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc
