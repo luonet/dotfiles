@@ -33,11 +33,12 @@ Plug 'mg979/vim-visual-multi'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
+Plug 'voldikss/vim-floaterm'
 
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
-" Plug 'tpope/vim-rails'
-" Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-bundler'
 " Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -166,6 +167,14 @@ nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gd :Gdiffsplit<CR>
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>ga :Git add %<CR>
+nnoremap <silent> <leader>gl :FloatermNew --autoclose=2 lazygit<CR>
+
+nnoremap <silent> <leader>n :FloatermNew --autoclose=2<CR>
+if has('nvim')
+  nnoremap <silent> <leader>o :FloatermNew --autoclose=2 ranger<CR>
+else
+  nnoremap <silent> <leader>o :FloatermNew --autoclose=2 lf<CR>
+endif
 
 " vim-easy-align
 vmap <Enter> <Plug>(EasyAlign)
