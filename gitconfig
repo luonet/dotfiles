@@ -7,10 +7,6 @@
 	s = status
 	co = checkout
 	d = diff
-	lg1 = log --graph --abbrev-commit --decorate --date=iso --all
-	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-	l  = !"git lg1"
-	lg = !"git lg1"
 [push]
 	default = simple
 [include]
@@ -18,7 +14,7 @@
 [interactive]
 	diffFilter = delta --color-only
 [delta]
-	features = line-numbers decorations navigate
+	features = line-numbers decorations# navigate
 	whitespace-error-style = 22 reverse
 [delta "decorations"]
 #	commit-style = 232 bold italic "#a4351b"
