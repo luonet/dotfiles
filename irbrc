@@ -1,2 +1,2 @@
-require "amazing_print"
-AmazingPrint.irb!
+require 'awesome_print'
+AwesomePrint.irb!

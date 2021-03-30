@@ -1,7 +1,7 @@
 Pry.editor = 'vim'
 
-require "amazing_print"
-AmazingPrint.pry!
+require "awesome_print"
+AwesomePrint.pry!
 
 Pry.print = lambda do |_output, value, pry_object|
   pretty = value.ai(:indent => 2)
